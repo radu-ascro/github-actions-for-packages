@@ -58,3 +58,5 @@ window.onload = () => {
     })
   })(p1, p2)
 }
+
+console.log('only for testing')
