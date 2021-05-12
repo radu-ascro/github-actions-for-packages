@@ -2,7 +2,10 @@
 
 name: Docker CD
 
-on: [push]
+on:
+  push:
+    paths:
+      - "**Dockerfile**"
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -62,22 +65,3 @@ jobs:
         registry: docker.pkg.github.com
         repository: radu-ascro/github-actions-for-packages/tic-tac-toe
         tag_with_sha: true
-        
-  publish-module:
-    name: 'Publish'
-    needs: test
-    # publish only when merged in development on original repo, not on PR
-    # if: github.repository == 'Serraview/engage-shared' && github.ref == 'refs/heads/development'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          username: ${{github.actor}}
-          password: ${{secrets.GITHUB_TOKEN}}
-          registry: npm.pkg.github.com
-          repository: radu-ascro/github-actions-for-packages/tic-tac-toe
-      - name: Install dependencies
-        # GitHub Action for install npm dependencies with caching without any configuration
-        uses: bahmutov/npm-install@v1
-      - run: npm publish    
