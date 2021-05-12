@@ -81,6 +81,6 @@ jobs:
           registry: npm.pkg.github.com
           repository: radu-ascro/github-actions-for-packages/tic-tac-toe
       - name: Install dependencies
-        # GitHub Action for install npm dependencies with caching without any configuration
+        # GitHub Action for install npm dependencies with caching without any configuration 
         uses: bahmutov/npm-install@v1
       - run: npm publish    
